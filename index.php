@@ -1,4 +1,15 @@
-<!doctype html>
+<?php
+session_start();
+function getInitials($name) {
+    $nameParts = explode(' ', $name);
+    $initials = '';
+
+    foreach ($nameParts as $part) {
+        $initials .= strtoupper(substr($part, 0, 1));
+    }
+    return $initials;
+}
+?>
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -22,6 +33,23 @@
             <link rel="stylesheet" href="assets/css/slick.css">
             <link rel="stylesheet" href="assets/css/nice-select.css">
             <link rel="stylesheet" href="assets/css/style.css">
+
+
+            <style>
+                .avatar {
+        width: 30px;
+        height: 30px;
+        background-color: #007bff;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+            </style>
    </head>
 
    <body>
@@ -37,6 +65,26 @@
         </div>
     </div>
     <!-- Preloader Start -->
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <header>
         <!-- Header Start -->
        <div class="header-area header-transparrent">
@@ -69,11 +117,39 @@
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
+                                
+                    <li class="dropdown pb-0" style="color: blue;">
+                <?php
+                if (isset($_SESSION['user_data'])) {
+                  $userName = $_SESSION['user_data']['username'];
+                  $userInitials = getInitials($userName);
+                  
+                  echo '<a href="#"><span>';
+                  echo '<div class="avatar">' . $userInitials . '</div>';
+                  echo '<ul>
+                  <ul class="submenu">
+                  <li><a href="profile.php" style="background-color:black;">View Profile</a></li>
+                 
+              </ul>';
+              
+                  // Now you can directly access 'Rolee' without additional checks
+                  if ($_SESSION['user_data']['username'] =="heydude") {  
+                      echo '<li><a href="admin.php" style="background-color:black;">Admin Panel</a></li>';
+                  }
+                  echo '</ul>';
+                  } 
+                  else {
+                    echo'<div class="header-btn d-none f-right d-lg-block">';
+                  echo '  <a href="register.php" class="btn head-btn1">Register</a>';
+                  echo' <a href="login.php" class="btn head-btn2">Login</a>';
+                  echo '</div>';
+                  }
+                  ?>
+                              
+                </li>
                             </div>
+
+
                         </div>
                         <!-- Mobile Menu -->
                         <div class="col-12">
