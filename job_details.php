@@ -1,9 +1,33 @@
+<?php
+include('header.php');
+
+$server='localhost';
+$user='root';
+$db='job_users';
+$pass='';
+
+$coni=mysqli_connect($server,$user,$pass,$db);
+
+if(!$coni)
+{
+ die(mysqli_error($coni));
+}
+
+if(isset($_GET['id']))
+{
+   $blid=$_GET['id'];
+   $sql9="SELECT * FROM `job` WHERE id='$blid';";
+   $res9=mysqli_query($coni,$sql9);
+   $row9=mysqli_fetch_assoc($res9);
+  
+}
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-         <title>Job board HTML-5 Template </title>
+         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -37,70 +61,24 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-       <div class="header-area header-transparrent">
-           <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                            </div>  
-                        </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="menu-wrapper">
-                                <!-- Main-menu -->
-                                <div class="main-menu">
-                                    <nav class="d-none d-lg-block">
-                                        <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="job_listing.html">Find a Jobs </a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>          
-                                <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
-                    </div>
-                </div>
-           </div>
-       </div>
-        <!-- Header End -->
-    </header>
+    <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "job_users";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sql2="SELECT * FROM `job` ORDER BY job.postdate DESC; ";
+$que2=mysqli_query($conn,$sql2);
+$row2=mysqli_num_rows($que2);
+$resimg=mysqli_fetch_assoc($que2);
+
+
+?>
     <main>
 
         <!-- Hero Area Start-->
-        <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center">
-                            <h2>UI/UX Designer</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+        
         <!-- Hero Area End -->
         <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
@@ -112,16 +90,24 @@
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <?php 
+                            // Check if $row2 has the 'img' key
+                            if (isset($row9['img'])) {
+                                $imgSrc = "upload/{$row9['img']}";
+                            ?>
+                            <img src="<?= $imgSrc ?>" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Product Image">
+                            <?php } else { ?>
+                            <img src="placeholder.jpg" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Company Logo">
+                            <?php } ?>
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>Digital Marketer</h4>
+                                        <h4><?= ucfirst($row9['company']) ?></h4>
                                     </a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
+                                        <li><?= ucfirst($row9['title']) ?></li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row9['location']) ?></li>
+                                        <li><?= ucfirst($row9['salary']) ?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -134,7 +120,7 @@
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+                                <p><?= ucfirst($row9['description']) ?></p>
                             </div>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
@@ -142,11 +128,7 @@
                                     <h4>Required Knowledge, Skills, and Abilities</h4>
                                 </div>
                                <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
+                                   <?= ucfirst($row9['requirement']) ?>
                                </ul>
                             </div>
                             <div class="post-details2  mb-50">
@@ -155,11 +137,7 @@
                                     <h4>Education + Experience</h4>
                                 </div>
                                <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
+                               <?= ucfirst($row9['education']) ?>
                                </ul>
                             </div>
                         </div>
@@ -173,12 +151,12 @@
                                <h4>Job Overview</h4>
                            </div>
                           <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span>New York</span></li>
-                              <li>Vacancy : <span>02</span></li>
+                              <li>Posted date : <span><?= ucfirst($row9['postdate']) ?></span></li>
+                              <li>Location : <span><?= ucfirst($row9['location']) ?></span></li>
+                              <li>Vacancy : <span></span></li>
                               <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span>$7,800 yearly</span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                              <li>Salary :  <span><?= ucfirst($row9['salary']) ?></span></li>
+                             
                           </ul>
                          <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
@@ -189,12 +167,12 @@
                            <div class="small-section-tittle">
                                <h4>Company Information</h4>
                            </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                              <span><?= ucfirst($row9['company']) ?></span>
+                              <p><?= ucfirst($row9['com_description']) ?></p>
                             <ul>
-                                <li>Name: <span>Colorlib </span></li>
-                                <li>Web : <span> colorlib.com</span></li>
-                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                                <li>Name: <span><?= ucfirst($row9['company']) ?> </span></li>
+                                <li>Web : <span><?= ucfirst($row9['web']) ?></span></li>
+                                <li>Email: <span><?= ucfirst($row9['email']) ?></span></li>
                             </ul>
                        </div>
                     </div>

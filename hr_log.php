@@ -6,8 +6,10 @@ $username = "root";
 $password = "";
 $dbname = "job_users";
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -17,13 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_password = isset($_POST["password"]) ? $_POST["password"] : "";
 
     // Prepare and execute the SQL query
-    $stmt = $conn->prepare("SELECT * FROM `hr` WHERE hr_mail=? AND password=?");
-
+    $stmt = $conn->prepare("SELECT id, company, hr, hr_mail, password FROM `hr` WHERE hr_mail=?");
     if ($stmt === false) {
         die("Error preparing query: " . $conn->error);
     }
 
-    $stmt->bind_param("ss", $form_username, $form_password);
+    $stmt->bind_param("s", $form_username);
 
     if (!$stmt->execute()) {
         die("Error executing query: " . $stmt->error);
@@ -32,30 +33,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     $stmt->close();
 
-    $num = $result->num_rows;
-
-    if ($num > 0) {
-        // Fetch the first row of the result as an associative array
+    // Check if user exists
+    if ($result->num_rows > 0) {
         $re = $result->fetch_assoc();
+        // Verify password
+        if ($form_password === $re['password']) { // Comparing plain text passwords
+            // Store user data in the session
+            $company_data = array(
+                'user_id' => $re['id'],
+                'company' => $re['company'],
+                'hr' => $re['hr'],
+                'email' => $re['hr_email'],
+            );
+            $_SESSION['company_data'] = $company_data;
 
-        // Print the fetched data for debugging
-        print_r($re);
-
-        // Store user data in the session
-        $company_data = array(
-            'user_id' => $re['id'],
-            'company' => $re['company'],
-            'hr' => $re['hr'],
-            'email' => $re['hr_email'],
-        );
-        $_SESSION['company_data'] = $company_data;
-
-        // Redirect to the dashboard or another page
-        header('Location: hr_panel.php');
-        exit();
+            // Redirect to the HR panel
+            header('Location: hr_panel.php');
+            exit();
+        } else {
+            $_SESSION['error'] = "Invalid Email / Password";
+            header('Location: hr_login.php'); // Redirect back to login page
+            exit();
+        }
     } else {
         $_SESSION['error'] = "Invalid Email / Password";
-        echo "<script>alert('Invalid Email / Password')</script>";
+        header('Location: hr_login.php'); // Redirect back to login page
+        exit();
     }
 }
 ?>
