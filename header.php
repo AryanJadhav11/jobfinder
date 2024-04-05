@@ -65,7 +65,7 @@ function getInitials($name) {
         $userName = $_SESSION['user_data']['username'];
         $userInitials = getInitials($userName);
         
-        echo '<a href="#" class="dropdown-toggle " id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>';
+        echo '<a href="profile.php" class="dropdown-toggle " id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>';
         echo '<div class="avatar">' . $userInitials . '</div>';
         echo '</a>';
         echo '<div class="dropdown-menu" aria-labelledby="profileDropdown">';

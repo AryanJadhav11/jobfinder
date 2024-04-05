@@ -1,6 +1,21 @@
 <?php
 include('header.php');
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "job_users";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sql2="SELECT * FROM `job` ORDER BY job.postdate DESC; ";
+$que2=mysqli_query($conn,$sql2);
+$row2=mysqli_num_rows($que2);
+$resimg=mysqli_fetch_assoc($que2);
+
+
 ?>
+
 <html class="no-js" lang="zxx">
     <head>
     <style>
@@ -118,8 +133,69 @@ include('header.php');
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Creative</a></h5>
-                                <span>(653)</span>
+                               <h5><a href="job_listing.php">Civil</a></h5>
+                              
+                                <?php
+$que = "SELECT * FROM job WHERE category = 'Civil'";
+$runjob = mysqli_query($conn, $que);
+$job_row = mysqli_num_rows($runjob);
+echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
+?>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-tour"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5><a href="job_listing.php">Computer & IT</a></h5>
+                              
+                                <?php
+$que = "SELECT * FROM job WHERE category = 'Computer'";
+$runjob = mysqli_query($conn, $que);
+$job_row = mysqli_num_rows($runjob);
+echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
+?>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-tour"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5><a href="job_listing.php">Accounting & Tally</a></h5>
+                              
+                                <?php
+$que = "SELECT * FROM job WHERE category = 'Tally'";
+$runjob = mysqli_query($conn, $que);
+$job_row = mysqli_num_rows($runjob);
+echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
+?>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-tour"></span>
+                            </div>
+                            <div class="services-cap">
+                               <h5><a href="job_listing.php">Networking</a></h5>
+                              
+                                <?php
+$que = "SELECT * FROM job WHERE category = 'Networking'";
+$runjob = mysqli_query($conn, $que);
+$job_row = mysqli_num_rows($runjob);
+echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
+?>
+                              
                             </div>
                         </div>
                     </div>
@@ -144,20 +220,6 @@ include('header.php');
             </div>
         </div>
 
-        <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "job_users";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$sql2="SELECT * FROM `job` ORDER BY job.postdate DESC; ";
-$que2=mysqli_query($conn,$sql2);
-$row2=mysqli_num_rows($que2);
-$resimg=mysqli_fetch_assoc($que2);
-
-
-?>
         <!-- Online CV Area End-->
         <!-- Featured_job_start -->
         <section class="featured-job-area feature-padding">
@@ -195,9 +257,9 @@ $resimg=mysqli_fetch_assoc($que2);
                         <div class="job-tittle mx-5">
                             <a href="job_details.html"><h4><?= ucfirst($row2['company']) ?></h4></a>
                             <ul>
-                                <li><?= ucfirst($row2['title']) ?></li>
-                                <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row2['location']) ?></li>
-                                <li><?= ucfirst($row2['salary']) ?><br></li>
+                                <li>Job: <?= ucfirst($row2['title']) ?></li>
+                                <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row2['loc']) ?></li>
+                                <li>Salary: $<?= ucfirst($row2['salary']) ?><br></li>
                             </ul>
                         </div>
                         <div class="items-link f-right ">
@@ -350,12 +412,20 @@ $resimg=mysqli_fetch_assoc($que2);
                             <div class="support-caption">
                                 <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
                                 <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
-                                <a href="posint_index.html" class="btn post-btn">Post a job</a>
+                               
+                                <?php
+if (isset($_SESSION['user_data']['username']) && $_SESSION['user_data']['username'] == "heydude") {
+    echo '<a class="btn post-btn" href="admin.php">Post a Job</a>';
+} else {
+    echo '<a class="btn post-btn" href="job_listing.php">Explore Job</a>';
+}
+?>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
-                        <div class="support-location-img">
+                        <div class="support-loc-img">
                             <img src="assets/img/service/support-img.jpg" alt="">
                             <div class="support-img-cap text-center">
                                 <p>Since</p>
