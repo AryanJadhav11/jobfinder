@@ -85,27 +85,14 @@ include('header.php');
                         </div>
                         <!-- Search Box -->
                         <div class="row">
-                            <div class="col-xl-8">
+                            
                                 <!-- form -->
-                                <form action="#" class="search-box">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Job Tittle or keyword">
-                                    </div>
-                                    <div class="select-form">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">Location BD</option>
-                                                <option value="">Location PK</option>
-                                                <option value="">Location US</option>
-                                                <option value="">Location UK</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="search-form">
+                               
+                                        
+                                    <div class="btn head-btn1 p-5" style="font-size:30px;">
                                         <a href="#">Find job</a>
-                                    </div>	
-                                </form>	
-                            </div>
+                                    </div>		
+                            
                         </div>
                     </div>
                 </div>
@@ -174,12 +161,12 @@ $resimg=mysqli_fetch_assoc($que2);
         <!-- Online CV Area End-->
         <!-- Featured_job_start -->
         <section class="featured-job-area feature-padding">
-    <div class="container">
+    <div class="container ">
         <!-- Section Tittle -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-tittle text-center">
-                    <span>Recent Job</span>
+                    <span>Find The Perfect Job For You !</span>
                     <h2>Featured Jobs</h2>
                 </div>
             </div>
@@ -193,36 +180,39 @@ $resimg=mysqli_fetch_assoc($que2);
                     if(mysqli_num_rows($que2) > 0) {
                         while($row2 = mysqli_fetch_assoc($que2)) {
                     ?>
-                    <div class="job-items">
-                        <div class="company-img">
+                    <div class="job-items pb-5">
+                        <div class="company-img" style="width:85px; height:85px; border-style: groove; border-color: #0056b3; border-width: thin;">
                             <?php 
                             // Check if $row2 has the 'img' key
                             if (isset($row2['img'])) {
                                 $imgSrc = "upload/{$row2['img']}";
                             ?>
-                            <img src="<?= $imgSrc ?>" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Product Image">
+                            <img src="<?= $imgSrc ?>" class="img-fluid" style="height:85x; object-fit: contain;" alt="Product Image">
                             <?php } else { ?>
-                            <img src="placeholder.jpg" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Company Logo">
+                            <img src="placeholder.jpg" class="img-fluid" style="height:85x; object-fit: contain;" alt="Company Logo">
                             <?php } ?>
                         </div>
-                        <div class="job-tittle">
+                        <div class="job-tittle mx-5">
                             <a href="job_details.html"><h4><?= ucfirst($row2['company']) ?></h4></a>
                             <ul>
                                 <li><?= ucfirst($row2['title']) ?></li>
                                 <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row2['location']) ?></li>
-                                <li><?= ucfirst($row2['salary']) ?></li>
+                                <li><?= ucfirst($row2['salary']) ?><br></li>
                             </ul>
                         </div>
-                        <div class="items-link f-right">
+                        <div class="items-link f-right ">
                             <a  href="job_details.php?id=<?= $row2['id'] ?>">View</a>
                         </div>
                     </div>
+                    
                     <?php 
                         }
                     } else {
                         echo "No jobs found.";
                     }
                     ?>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

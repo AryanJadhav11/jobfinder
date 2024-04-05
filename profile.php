@@ -134,6 +134,17 @@ function getInitials($name) {
                                               ?></p>
                      
                       <button class="btn btn-outline-primary">My Application status</button>
+                      <?php
+                if($_SESSION==true)
+                {
+
+                   echo '<a href="logout.php" class="btn">Log out </a>';
+
+                }
+                
+            ?>
+            
+                     
                     </div>
                   </div>
                 </div>

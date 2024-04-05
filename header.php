@@ -14,7 +14,7 @@ function getInitials($name) {
                 .avatar {
         width: 30px;
         height: 30px;
-        background-color: #007bff;
+        background-color: #fb246a;
         color: #ffffff;
         font-size: 20px;
         font-weight: bold;
@@ -59,35 +59,37 @@ function getInitials($name) {
                                 </div>          
                                 <!-- Header-btn -->
                                 
-                    <li class="dropdown pb-0" style="color: blue;">
-                <?php
-                if (isset($_SESSION['user_data'])) {
-                  $userName = $_SESSION['user_data']['username'];
-                  $userInitials = getInitials($userName);
-                  
-                  echo '<a href="#"><span>';
-                  echo '<div class="avatar">' . $userInitials . '</div>';
-                  echo '<ul>
-                  <ul class="submenu">
-                  <li><a href="profile.php" style="background-color:black;">View Profile</a></li>
-                 
-              </ul>';
-              
-                  // Now you can directly access 'Rolee' without additional checks
-                  if ($_SESSION['user_data']['username'] =="heydude") {  
-                      echo '<li><a href="admin.php" style="background-color:black;">Admin Panel</a></li>';
-                  }
-                  echo '</ul>';
-                  } 
-                  else {
-                    echo'<div class="header-btn d-none f-right d-lg-block">';
-                  echo '  <a href="register.php" class="btn head-btn1">Register</a>';
-                  echo' <a href="login.php" class="btn head-btn2">Login</a>';
-                  echo '</div>';
-                  }
-                  ?>
-                              
-                </li>
+                                <li class="dropdown pt-4" style="color: #fb246a;">
+    <?php
+    if (isset($_SESSION['user_data'])) {
+        $userName = $_SESSION['user_data']['username'];
+        $userInitials = getInitials($userName);
+        
+        echo '<a href="#" class="dropdown-toggle " id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>';
+        echo '<div class="avatar">' . $userInitials . '</div>';
+        echo '</a>';
+        echo '<div class="dropdown-menu" aria-labelledby="profileDropdown">';
+        echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
+        
+        // Now you can directly access 'Rolee' without additional checks
+        if ($_SESSION['user_data']['username'] =="heydude") {  
+            echo '<a class="dropdown-item" href="admin.php">Admin Panel</a>';
+        }
+        echo '</div>';
+    } else {
+        // Fallback for users who are not logged in
+        echo '<ul>';
+        echo '<li>';
+        echo '<div class="header-btn d-none f-right d-lg-block">';
+        echo '<a href="register.php" class="btn head-btn1 p-3">Register</a>';
+        echo '<a href="login.php" class="btn head-btn2 p-3">Login</a>';
+        echo '</div>';
+        echo '</li>';
+        echo '</ul>';
+    }
+    ?>
+</li>
+
                             </div>
 
 

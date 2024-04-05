@@ -159,7 +159,14 @@ $resimg=mysqli_fetch_assoc($que2);
                              
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                            <?php
+    if (isset($_SESSION['user_data'])) {
+        echo '<a href="application.php?id=' . $row9['id'] . '" class="btn">Apply Now</a>';
+    } else {
+        echo '<a href="login.php" class="btn"></a>';
+      
+    }
+?>
                          </div>
                        </div>
                         <div class="post-details4  mb-50">
