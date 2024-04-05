@@ -105,7 +105,7 @@ $resimg=mysqli_fetch_assoc($que2);
                                
                                         
                                     <div class="btn head-btn1 p-5" style="font-size:30px;">
-                                        <a href="#">Find job</a>
+                                        <a href="#jobshere">Find job</a>
                                     </div>		
                             
                         </div>
@@ -228,7 +228,7 @@ echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-tittle text-center">
-                    <span>Find The Perfect Job For You !</span>
+                    <span id="jobshere">Find The Perfect Job For You !</span>
                     <h2>Featured Jobs</h2>
                 </div>
             </div>
@@ -255,7 +255,7 @@ echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
                             <?php } ?>
                         </div>
                         <div class="job-tittle mx-5">
-                            <a href="job_details.html"><h4><?= ucfirst($row2['company']) ?></h4></a>
+                            <a href="job_details.php?id=<?= $row2['id'] ?>"><h4><?= ucfirst($row2['company']) ?></h4></a>
                             <ul>
                                 <li>Job: <?= ucfirst($row2['title']) ?></li>
                                 <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row2['loc']) ?></li>

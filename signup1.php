@@ -8,7 +8,7 @@ $showcharerr = false;
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "users_db";
+$dbname = "job_users";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

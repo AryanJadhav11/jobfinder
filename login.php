@@ -75,63 +75,70 @@ function getInitials($name) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="sign_in.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/registrations/registration-5/assets/css/registration-5.css">
     <title>Job Finder | Login In</title>
 </head>
 
     <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+     
 
-<!----------------------- Login Container -------------------------->
-
-   <div class="row border rounded-5 p-3 bg-white shadow box-area">
-
-<!--------------------------- Left Box ----------------------------->
-
-   <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
-      
-       <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">JobFinder.</p>
-       <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Find Your Dream Job</small>
-   </div> 
-
-<!-------------------- ------ Right Box ---------------------------->
-
-
-   <div class="col-md-6 right-box">
-      <div class="row align-items-center">
-            <div class="header-text mb-4">
-                 <h2>Welcome Back Mate!</h2>
-                 <p>We are happy to see you again.</p>
+    <section class="p-3 p-md-4 p-xl-5">
+  <div class="container">
+    <div class="card border-light-subtle shadow-sm">
+      <div class="row g-0">
+        <div class="col-12 col-md-6 text-bg-primary">
+          <div class="d-flex align-items-center justify-content-center h-100">
+            <div class="col-10 col-xl-8 py-3">
+              <img class="img-fluid rounded mb-4" loading="lazy" src="https://img.freepik.com/free-vector/telecommuting-home-concept_23-2148496608.jpg?w=740" width="245" height="80" alt="BootstrapBrain Logo">
+              <hr class="border-primary-subtle mb-4">
+              <h2 class="h1 mb-4">Unlock Your Career Potential</h2>
+              <p class="lead m-0">Welcome to JobFinder, where opportunities meet ambition. Log in to explore a world of job possibilities tailored just for you. Your dream career awaits!</p>
             </div>
-            <form method="post" >
-              <div class="input-group mb-3">
-                <input type="text" id="uname" name="uname" class="form-control form-control-lg bg-light fs-6" placeholder="Username" required>
-              </div>
-              
-              <div class="input-group mb-1">
-              <input type="password" id="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required>
-              </div>
-              <div class="input-group mb-5 d-flex justify-content-between">
-                
-              </div>
-              <div class="input-group mb-3">
-                <button class="btn btn-lg btn-primary w-100 fs-6" type="submit" value="Submit">Sign Up</button>
-              </div>
-               
-          </form>
-
-
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="row">
-                <small>Dont have a account ?<a href="register.php">Register here</a></small>
+              <div class="col-12">
+                <div class="mb-5">
+                  <h2 class="h3">Welcome Back Mate !</h2>
+                  <h3 class="fs-6 fw-normal text-secondary m-0">Enter your credentials</h3>
+                </div>
+              </div>
             </div>
-         
+            <form method="post">
+              <div class="row gy-3 gy-md-4 overflow-hidden">
+                <div class="col-12">
+                  <label for="firstName" class="form-label">Username<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="uname" id="uname" placeholder="Username" required>
+                </div>
+                <div class="col-12">
+                  <label for="lastName" class="form-label">Password<span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                </div>
+              
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="btn bsb-btn-xl btn-primary" type="submit">Sign up</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-12">
+                <hr class="mt-5 mb-4 border-secondary-subtle">
+                <p class="m-0 text-secondary text-center">Already have an account? <a href="#!" class="link-primary text-decoration-none">Sign in</a></p>
+              </div>
+            </div>
+           
+          </div>
+        </div>
       </div>
-   </div> 
-   
-
+    </div>
   </div>
-</div>
+</section>
+
+   
 </body>
     </html>
