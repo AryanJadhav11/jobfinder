@@ -13,6 +13,12 @@ $coni = mysqli_connect($server, $user, $pass, $db);
 if (!$coni) {
     die(mysqli_error($coni));
 }
+if(isset($_GET['id'])) {
+  $blid=$_GET['id'];
+  $sql9="SELECT * FROM `job` WHERE id='$blid';";
+  $res9=mysqli_query($coni,$sql9);
+  $row9=mysqli_fetch_assoc($res9);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
@@ -32,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
     $comp_email = isset($_POST['comp_email']) ? $_POST['comp_email'] : ''; 
     $comp_web = isset($_POST['comp_web']) ? $_POST['comp_web'] : ''; 
    
+    $company = isset($_POST['company']) ? $_POST['company'] : ''; 
+    $title = isset($_POST['title']) ? $_POST['title'] : ''; 
     $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : ''; 
     $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -46,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
     $resume = isset($_FILES['resume']['name']) ? $_FILES['resume']['name'] : '';
 
     // SQL query to insert data into the database
-    $sql = "INSERT INTO `applications`(`id`, `firstname`, `lastname`, `email`, `address`, `qualification`, `tech_skills`, `resume`, `city`, `zip`, `gender`, `phoneno`, `resumelink`) 
-    VALUES ('$userid', '$firstname', '$lastname', '$email', '$address', '$qualification', '$techskill', '$resume', '$city', '$zip', '$gender', '$phone_no', '$resumelink')";
+    $sql = "INSERT INTO `applications`(`id`,`company` , `title`, `firstname`, `lastname`, `email`, `address`, `qualification`, `tech_skills`, `resume`, `city`, `zip`, `gender`, `phoneno`, `resumelink`) 
+    VALUES ('$userid', '$company', '$title', '$firstname', '$lastname', '$email', '$address', '$qualification', '$techskill', '$resume', '$city', '$zip', '$gender', '$phone_no', '$resumelink')";
 
     if ($coni->query($sql) === TRUE) {
 
@@ -65,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
         $mail->SetFrom("jadhavaryan467@gmail.com");
         $mail->Subject = $subject;
         $mail->Body = $message;
-        $mail->addAttachment('uploads/'. $resume);
+        $mail->addAttachment('upload/'. $resume);
         $mail->AddAddress($to);
         $mail->SMTPOptions = array('ssl' => array( 
             'verify_peer' => false,
@@ -204,6 +212,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
 <input type="hidden" class="form-control" id="comp_web" name="comp_web" value="<?php echo $web; ?>" readonly>
 
 <div class="form-row">
+<div class="form-group col-md-6">
+      <label for="firstname">Applying for</label>
+      <input type="text" class="form-control" id="company" name="company" value="<?= ucfirst($row9['company']) ?>" readonly>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="firstname">Applying for</label>
+      <input type="text" class="form-control" id="title" name="title" value="<?= ucfirst($row9['title']) ?>" readonly>
+    </div>
   <div class="form-group col-md-6">
       <label for="firstname">First Name</label>
       <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">

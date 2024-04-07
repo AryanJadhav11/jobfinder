@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
 
     // Retrieve the specific request from the database
-    $sql = "SELECT * FROM pending_requests WHERE id = $id";
+    $sql = "SELECT * FROM applications WHERE id = $id";
     $result = mysqli_query($coni, $sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -54,30 +54,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
         $uniquePassword =substr(md5(uniqid()), 0, 8);
 
 
-        $sqlpro = "INSERT INTO `hr` (`id`, `company`, `hr`, `com_mail`, `hr_mail`, `hr_pos`, `hr_ph`, `linkedin`, `password`) 
-           VALUES (NULL, '{$requestData['company']}', '{$requestData['hr']}', '{$requestData['company_mail']}', '{$requestData['hr_mail']}', '{$requestData['hr_position']}', '{$requestData['hr_ph']}', '{$requestData['linkedin']}', '{$uniquePassword}')";
-
+        $sqlpro = "INSERT INTO `employee` (`id`, `company` , `firstname`, `lastname`, `email`, `address`, `qualification`, `tech_skills`, `resume`, `city`, `zip`, `gender`, `phoneno`, `resumelink`)  
+                   VALUES (NULL, '{$requestData['firstname']}', '{$requestData['lastname']}', '{$requestData['email']}', '{$requestData['address']}', '{$requestData['qualification']}', '{$requestData['tech_skills']}', '{$requestData['resume']}', '{$requestData['city']}', '{$requestData['zip']}', '{$requestData['gender']}', '{$requestData['phoneno']}', '{$requestData['resumelink']}', '{$uniquePassword}')";
+        
         $quepro = mysqli_query($coni, $sqlpro);
 
         if ($quepro) {
             // Send approval email to the owner
-            $to = $requestData['hr_mail'];
-            $subject = 'Your Request has been approved';
-            $message = "Hey, {$requestData['hr']}, your request for the registration of {$requestData['company']} has been approved. Your login credentials for your admin panel are username={$requestData['hr_mail']} and password={$uniquePassword}";
+            $to = $requestData['email'];
+            $subject = 'Your Application has been approved';
+            $message = "Hey, {$requestData['firstname']}, your application for {$requestData['title']} in {$requestData['company']} has been approved. ";
             $result = smtp_mailer($to, $subject, $message);
           
         
 
             // Remove the request from the pending_requests table
-            $sqlDelete = "DELETE FROM pending_requests WHERE id = $id";
+            $sqlDelete = "DELETE FROM applications WHERE id = $id";
             $resultDelete = mysqli_query($coni, $sqlDelete);
 
             if ($resultDelete) {
                 // Redirect back to the confirmation page
-                header('Location: requests.php');
+                header('Location: hr_panel.php');
                 exit;
             } else {
-                echo "Error deleting request from the database.";
+                echo "Error.";
             }
         } else {
             echo "Error inserting data into  table: " . mysqli_error($coni);

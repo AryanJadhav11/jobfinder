@@ -16,6 +16,7 @@ $showerrr = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $company = $_POST['cname'];
     $hr = $_POST['hr'];
+	$title=$_POST['title'];
     $detail = $_POST['detail'];
     $salary = $_POST['salary'];
     $web=$_POST['web'];

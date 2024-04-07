@@ -106,7 +106,7 @@ $resimg=mysqli_fetch_assoc($que2);
                                     </a>
                                     <ul>
                                         <li><?= ucfirst($row9['title']) ?></li>
-                                        <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row9['location']) ?></li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row9['loc']) ?></li>
                                         <li><?= ucfirst($row9['salary']) ?></li>
                                     </ul>
                                 </div>
@@ -152,7 +152,7 @@ $resimg=mysqli_fetch_assoc($que2);
                            </div>
                           <ul>
                               <li>Posted date : <span><?= ucfirst($row9['postdate']) ?></span></li>
-                              <li>Location : <span><?= ucfirst($row9['location']) ?></span></li>
+                              <li>loc : <span><?= ucfirst($row9['loc']) ?></span></li>
                               <li>Vacancy : <span></span></li>
                               <li>Job nature : <span>Full time</span></li>
                               <li>Salary :  <span><?= ucfirst($row9['salary']) ?></span></li>
@@ -174,7 +174,7 @@ $resimg=mysqli_fetch_assoc($que2);
     echo '<input type="hidden" id="emaill" name="emaill" value="' . $email . '">';
     echo '<input type="hidden" id="web" name="web" value="' . $web . '">';
     // You can add more input fields for the form here
-    echo '<button type="submit" id="sub" name="sub" class="btn">Apply Now</button>';
+    echo '<a  href="application.php?id=' . $row9['id'] . '" class="btn">Apply Now</a>';
     echo '</form>';
 } else {
         echo '<a href="login.php" class="btn"></a>';

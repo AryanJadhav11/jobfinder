@@ -23,7 +23,7 @@ $hr_data = $_SESSION['company_data'];
 $com = $hr_data['company'];
 
 // Fetch data from the database based on the current turf owner
-$sql = "SELECT * FROM `employee_application` WHERE company='$com' ORDER BY employee_application.boid DESC";
+$sql = "SELECT * FROM `applications` WHERE company='$com' ORDER BY applications.id DESC";
 $result = mysqli_query($coni, $sql);
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -392,7 +392,7 @@ a:focus {
             <div class="table-title">
                 <div class="row">
                 <div class="col-sm-6">
-    <h2>Applications for <b><?php echo $com; ?></b></h2>
+    <h2>applications for <b><?php echo $com; ?></b></h2>
 </div>
 
                   
@@ -403,18 +403,22 @@ a:focus {
                     <tr>
                         <th>Id</th>
                         <th>Company</th>
-                        <th>Job</th>
-                        <th>Employee Name</th>
-                        <th>Employee Email</th>
-                        <th>Employee Phone Number</th>
-                        <th>Application Date</th>
-                        <th>View Resume</th>
+                        <th>Title</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Qualification</th>
+                        <th>Techical Skills</th>
+                        <th>Resume</th>
+                        <th>Resume Link</th>
+                        <th>Action</th>
                         
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-$sql = "SELECT * FROM `employee_application` WHERE company='$com' ORDER BY employee_application.id DESC";
+$sql = "SELECT * FROM `applications` WHERE company='$com' ORDER BY applications.id DESC";
 $result = mysqli_query($coni, $sql);
 
 if ($result === false) {
@@ -427,26 +431,39 @@ if ($rowCount > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $jid = $row['id'];
         $cn = $row['company'];
-        $en = $row['Employee_name'];
-        $em = $row['Employee_email'];
-        $ep = $row['Employee_phone'];
-        $ad = $row['Application_date'];
-        $r = $row['resume'];
+        $tit= $row['title'];
+        $en = $row['firstname'];
+        $em = $row['lastname'];
+        $ep = $row['email'];
+        $ad = $row['address'];
+        $r = $row['qualification'];
+        $ts = $row['tech_skills'];
+        $res = $row['resume'];
+        $ci = $row['city'];
+        $gen = $row['gender'];
+        $ph = $row['phoneno'];
+        $rl = $row['resumelink'];
 
         echo '<tr>
-                <td scope="row">' . $jid . '</td>
-                <td>' . $cn . '</td>
-                <td>' . $en . '</td>
-                <td>' . $em . '</td>
-                <td>' . $ep . '</td>
-                <td>' . $ad . '</td>
-                
-                <td>
-                <a href="' . $r . '" target="_new">View Resume</a>
-            </td>
-               
-                
-            </tr>';
+        <td scope="row">' . $jid . '</td>
+        <td>' . $cn . '</td>
+        <td>' . $tit . '</td>
+        <td>' . $en . '</td>
+        <td>' . $em . '</td>
+        <td>' . $ep . '</td>
+        <td>' . $ad . '</td>
+        <td>' . $r . '</td>
+        <td>' . $ts . '</td>
+        <td>' . $res . '</td>
+        <td>' . $rl . '</td>
+        <td>
+            <form action="approve_job.php" method="post">
+                <input type="hidden" name="id" value="' . $row["id"] . '">
+                <input type="submit" name="approve" value="Approve Application">
+            </form>
+        </td>
+    </tr>';
+
     }
 } else {
     echo "<tr><td colspan='6'>No rows found.</td></tr>";
@@ -478,6 +495,10 @@ if ($rowCount > 0) {
                     <div class="form-group">
                         <label>HR Name</label>
                         <input type="text" name="hr" class="form-control" placeholder="Name of HR" style="width:220px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Job Title" style="width:220px;" required>
                     </div>
                     <div class="mb-3">
                         <label>Add Details</label>
