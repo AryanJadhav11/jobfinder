@@ -45,6 +45,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
     $resumelink = isset($_POST['resumelink']) ? $_POST['resumelink'] : '';
     $resume = isset($_FILES['resume']['name']) ? $_FILES['resume']['name'] : '';
 
+    // Check if all required fields are filled out
+    $required_fields = array('firstname', 'lastname', 'email', 'phone_no', 'address', 'city', 'zip', 'qualification', 'techskill', 'gender');
+    $missing_fields = array();
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $missing_fields[] = $field;
+        }
+    }
+
+    // If any required field is missing, display an alert and stop form submission
+    if (!empty($missing_fields)) {
+        $missing_fields_str = implode(', ', $missing_fields);
+        echo "<script>alert('Please fill out all fields before proceeding to submission. Missing fields: $missing_fields_str');</script>";
+        return;
+    }
+
     // SQL query to insert data into the database
     $sql = "INSERT INTO `applications`(`id`, `firstname`, `lastname`, `email`, `address`, `qualification`, `tech_skills`, `resume`, `city`, `zip`, `gender`, `phoneno`, `resumelink`) 
     VALUES ('$userid', '$firstname', '$lastname', '$email', '$address', '$qualification', '$techskill', '$resume', '$city', '$zip', '$gender', '$phone_no', '$resumelink')";
@@ -206,36 +222,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
 <div class="form-row">
   <div class="form-group col-md-6">
       <label for="firstname">First Name</label>
-      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" require>
     </div>
     <div class="form-group col-md-6">
       <label for="lastname">Last Name</label>
-      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" require>
     </div>
   
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email" require>
     </div>
     <div class="form-group col-md-6">
       <label for="phone_no">Phone No</label>
-      <input type="number" class="form-control" id="phone_no" name="phone_no" placeholder="Phone No.">
+      <input type="number" class="form-control" id="phone_no" name="phone_no" placeholder="Phone No." require>
     </div>
 </div>
 
 <div class="form-group">
     <label for="address">Address</label>
-    <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+    <input type="text" class="form-control" id="address" name="address" placeholder="Address" require>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" name="city" placeholder="City">
+      <input type="text" class="form-control" id="city" name="city" placeholder="City" require>
     </div>
     <div class="form-group col-md-2">
       <label for="zip">Zip</label>
-      <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code">
+      <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code" require>
     </div> 
     <div class="form-group col-md-4">
       <label for="gender">Gender</label>
@@ -250,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="qualification">Qualification</label>
-      <input type="text" class="form-control" id="qualification" name="qualification" placeholder="Qualification">
+      <input type="text" class="form-control" id="qualification" name="qualification" placeholder="Qualification" require>
     </div>
     <div class="form-group col-md-6">
       <label for="techskill">Technical Skills</label>
