@@ -16,10 +16,6 @@ if ($conn->connect_error) {
 ?>
 
 
-
-
-
-
 <?php
    
 
@@ -34,6 +30,7 @@ function getInitials($name) {
   return $initials;
 }
 ?>
+
 <html lang="en">
    <head>
       <meta charset="utf-8">
@@ -1350,7 +1347,7 @@ echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-
                                     <th>Website</th>
                                     <th>Email</th>
                                     <th>Post Date</th>
-                                    <th>Location</th>
+                                    <th>loc</th>
                                     <th>Action</th>
                                   
                                     
@@ -1389,12 +1386,12 @@ if ($rowCount > 0) {
         $id = $row['id'];
         $company = $row['company'];
         $hr = $row['hr'];
-       $title=$row['title'];
+        $title=$row['title'];
         $salary=$row['salary'];
         $web=$row['web'];
         $email=$row['email'];
         $postdate=$row['postdate'];
-        $loc=$row['location'];
+        $loc=$row['loc'];
         
 
 
@@ -1403,7 +1400,6 @@ if ($rowCount > 0) {
                 <td>' . $company . '</td>
                 <td>' . $hr . '</td>
                 <td>' . $title . '</td>
-               
                 <td>' . $salary . '</td>
                 <td>' . $web . '</td>
                 <td>' . $email . '</td>
@@ -1435,7 +1431,7 @@ if ($rowCount > 0) {
     <div id="addjob" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form action="job_add.php" method="POST" enctype="multipart/form-data">
+        <form action="job_add.php" method="post" enctype="multipart/form-data">
                 <div class="modal-header">                        
                     <h4 class="modal-title">Add a New Job</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

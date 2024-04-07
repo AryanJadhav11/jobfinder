@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($size <= 20000000) {
         move_uploaded_file($tmpname, $destination);
         $sql = "INSERT INTO `job`(`company`, `hr`, `title`, `salary`, `web`, `email`, `description`, `com_description`, `requirement`, `location`, `img`) VALUES ('$company', '$hr', '$title', '$salary', '$web', '$email', '$detail', '$cdes', '$req', ' $loc', '$filename')";
-    $res = mysqli_query($con, $sql);
+        $res = mysqli_query($con, $sql);
 
     if ($res) {
         $showsuc = "You just published a new job";
