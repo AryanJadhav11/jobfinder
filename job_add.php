@@ -4,45 +4,62 @@ $user = 'root';
 $db = 'job_users';
 $pass = '';
 
+// Establishing connection to the database
 $con = mysqli_connect($server, $user, $pass, $db);
 
+// Checking if the connection was successful
 if (!$con) {
-    die(mysqli_error($con));
+    die(mysqli_error($con)); // If connection fails, terminate with an error message
 }
 
 $showsuc = false;
 $showerrr = false;
 
+// Handling form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieving form data
     $company = $_POST['cname'];
     $hr = $_POST['hr'];
-	$title=$_POST['title'];
+    $title = $_POST['title'];
     $detail = $_POST['detail'];
     $salary = $_POST['salary'];
-    $web=$_POST['web'];
-    $email=$_POST['email'];
-    $cdes=$_POST['cdes'];
-    $req=$_POST['req'];
-    $loc=$_POST['loc'];
+    $web = $_POST['web'];
+    $email = $_POST['email'];
+    $cdes = $_POST['cdes'];
+    $edu = $_POST['edu'];
+    $req = $_POST['req'];
+    $loc = $_POST['loc'];
+    
+    // File upload handling
     $filename = $_FILES['image']['name'];
     $tmpname = $_FILES['image']['tmp_name'];
     $size = $_FILES['image']['size'];
     $destination = "upload/" . $filename;
-    if ($size <= 20000000) {
-        move_uploaded_file($tmpname, $destination);
-        $sql = "INSERT INTO `job`(`company`, `hr`, `title`, `salary`, `web`, `email`, `description`, `com_description`, `requirement`, `location`, `img`) VALUES ('$company', '$hr', '$title', '$salary', '$web', '$email', '$detail', '$cdes', '$req', ' $loc', '$filename')";
+
+    // Checking file size
+    if ($size <= 2000000) { // Limiting file size to 2MB
+        move_uploaded_file($tmpname, $destination); // Moving the uploaded file to the destination folder
+        
+        // Constructing the SQL query with proper column names
+        $sql = "INSERT INTO `job`(`company`, `hr`, `title`, `salary`, `web`, `email`, `description`, `com_description`, `requirement`, `education`, `location`, `img`) 
+                VALUES ('$company', '$hr', '$title', '$salary', '$web', '$email', '$detail', '$cdes', '$req', '$edu', '$loc', '$filename')";
+        
+        // Executing the SQL query
         $res = mysqli_query($con, $sql);
 
-    if ($res) {
-        $showsuc = "You just published a new job";
+        // Checking if the query was executed successfully
+        if ($res) {
+            $showsuc = "You just published a new job";
+        } else {
+            $showerrr = "Something went wrong, sorry buddy: " . mysqli_error($con);
+            // Displaying an alert using JavaScript
+            echo "<script>alert('$showerrr');</script>";
+        }
     } else {
-        $showerrr = "Something went wrong, sorry buddy: " . mysqli_error($con);
+        $showerrr = "Image size should be less than or equal to 2MB.";
+        // Displaying an alert using JavaScript
+        echo "<script>alert('$showerrr');</script>";
     }
-    }
-
-    // Validate and sanitize input data if needed
-
-   
 }
 ?>
 
@@ -60,6 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
 <style>
 body {
 	font-family: 'Varela Round', sans-serif;
@@ -153,12 +172,14 @@ body {
 </style>
 </head>
 <body>
+<?php if ($showsuc): ?>
 <script>
     // Show the modal when the page loads
     window.onload = function () {
         $('#myModal').modal('show');
     };
 </script>
+<?php endif; ?>
 
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
@@ -179,4 +200,4 @@ body {
 	</div>
 </div>     
 </body>
-</html>                            
+</html>

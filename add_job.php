@@ -1210,6 +1210,8 @@ $(document).ready(function () {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
 
    </head>
    
@@ -1431,7 +1433,7 @@ if ($rowCount > 0) {
     <div id="addjob" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form action="job_add.php" method="post" enctype="multipart/form-data">
+        <form  method="POST" action="job_add.php" enctype="multipart/form-data">
                 <div class="modal-header">                        
                     <h4 class="modal-title">Add a New Job</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1444,6 +1446,10 @@ if ($rowCount > 0) {
                     <div class="form-group">
                         <label>Company Name</label>
                         <input type="text" name="cname" class="form-control" placeholder="Name of Company" style="width:220px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Title of Job" style="width:220px;" required>
                     </div>
                     <div class="form-group">
                         <label>HR Name</label>
@@ -1482,6 +1488,10 @@ if ($rowCount > 0) {
                         <input type="text" name="req" class="form-control" placeholder="Add requirements for job" style="width:220px;" required>
                     </div>
                     <div class="form-group">
+                        <label>Educational Qualification</label>
+                        <input type="text" name="edu" class="form-control" placeholder="Add requirements for job" style="width:220px;" required>
+                    </div>
+                    <div class="form-group">
                         <label>Location</label>
                         <input type="text" name="loc" class="form-control" placeholder="Add Job location" style="width:220px;" required>
                     </div>
@@ -1489,7 +1499,7 @@ if ($rowCount > 0) {
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add Job">
+                    <input type="submit"  class="btn btn-success" value="Add Job">
                 </div>
             </form>
         </div>
