@@ -106,7 +106,7 @@ $resimg=mysqli_fetch_assoc($que2);
                                     </a>
                                     <ul>
                                         <li><?= ucfirst($row9['title']) ?></li>
-                                        <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row9['loc']) ?></li>
+                                        <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row9['location']) ?></li>
                                         <li><?= ucfirst($row9['salary']) ?></li>
                                     </ul>
                                 </div>
@@ -152,7 +152,7 @@ $resimg=mysqli_fetch_assoc($que2);
                            </div>
                           <ul>
                               <li>Posted date : <span><?= ucfirst($row9['postdate']) ?></span></li>
-                              <li>Location : <span><?= ucfirst($row9['loc']) ?></span></li>
+                              <li>Location : <span><?= ucfirst($row9['location']) ?></span></li>
                               <li>Vacancy : <span></span></li>
                               <li>Job nature : <span>Full time</span></li>
                               <li>Salary :  <span><?= ucfirst($row9['salary']) ?></span></li>
@@ -160,9 +160,23 @@ $resimg=mysqli_fetch_assoc($que2);
                           </ul>
                          <div class="apply-btn2">
                             <?php
-    if (isset($_SESSION['user_data'])) {
-        echo '<a href="application.php?id=' . $row9['id'] . '" class="btn">Apply Now</a>';
-    } else {
+   if (isset($_SESSION['user_data'])) {
+    // Assuming $row9['id'] contains the ID you want to pass to application.php
+    $id = $row9['id'];
+    $company = $row9['company'];
+    $email = $row9['email'];
+    $web = $row9['web'];
+    
+    // Echo the HTML form directly within the if block
+    echo '<form action="application.php" method="POST">';
+    echo '<input type="hidden" id="id" name="id" value="' . $id . '">';
+    echo '<input type="hidden" id="company" name="company" value="' . $company . '">';
+    echo '<input type="hidden" id="emaill" name="emaill" value="' . $email . '">';
+    echo '<input type="hidden" id="web" name="web" value="' . $web . '">';
+    // You can add more input fields for the form here
+    echo '<button type="submit" id="sub" name="sub" class="btn">Apply Now</button>';
+    echo '</form>';
+} else {
         echo '<a href="login.php" class="btn"></a>';
       
     }
