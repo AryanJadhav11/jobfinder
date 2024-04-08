@@ -164,17 +164,22 @@ $resimg=mysqli_fetch_assoc($que2);
     // Assuming $row9['id'] contains the ID you want to pass to application.php
     $id = $row9['id'];
     $company = $row9['company'];
-    $email = $row9['email'];
+    $emaill = $row9['email'];
     $web = $row9['web'];
+    $title = $row9['title'];
+    $salary = $row9['salary'];
+    $loc = $row9['loc'];
     
     // Echo the HTML form directly within the if block
-    echo '<form action="application.php" method="POST">';
-    echo '<input type="hidden" id="id" name="id" value="' . $id . '">';
-    echo '<input type="hidden" id="company" name="company" value="' . $company . '">';
-    echo '<input type="hidden" id="emaill" name="emaill" value="' . $email . '">';
-    echo '<input type="hidden" id="web" name="web" value="' . $web . '">';
+    echo '<form action="appli.php" method="POST">';
+    echo '<input type="hidden" id="company" name="company" value="' . $row9['company'] . '">';
+    echo '<input type="hidden" id="emaill" name="emaill" value="' . $row9['email'] . '">';
+    echo '<input type="hidden" id="web" name="web" value="' . $row9['web'] . '">';
+    echo '<input type="hidden" id="tit" name="tit" value="' . $row9['title'] . '">';
+    echo '<input type="hidden" id="salary" name="salary" value="' . $row9['salary'] . '">';
+    echo '<input type="hidden" id="loc" name="loc" value="' . $row9['loc'] . '">';
     // You can add more input fields for the form here
-    echo '<a  href="application.php?id=' . $row9['id'] . '" class="btn">Apply Now</a>';
+    echo '<button type="submit" id="sub" name="sub" class="btn">Apply Now</button>';
     echo '</form>';
 } else {
         echo '<a href="login.php" class="btn"></a>';

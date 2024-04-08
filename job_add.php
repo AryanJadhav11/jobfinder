@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($tmpname, $destination); // Moving the uploaded file to the destination folder
         
         // Constructing the SQL query with proper column names
-        $sql = "INSERT INTO `job`(`company`, `hr`, `title`, `salary`, `web`, `email`, `description`, `com_description`, `requirement`, `education`, `location`, `img`) 
+        $sql = "INSERT INTO `job`(`company`, `hr`, `title`, `salary`, `web`, `email`, `description`, `com_description`, `requirement`, `education`, `loc`, `img`) 
                 VALUES ('$company', '$hr', '$title', '$salary', '$web', '$email', '$detail', '$cdes', '$req', '$edu', '$loc', '$filename')";
         
         // Executing the SQL query
