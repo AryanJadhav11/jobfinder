@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
         $message = '<p>Dear HR Team,</p>';
         $message .= '<p>A new job application has been submitted. Below are the details of the applicant:</p>';
         $message .= '<ul>';
-        $message .= '<li><h4><strong>Compant Name:</strong> <b>' . $company_name . '</b></h4></li>';
+        $message .= '<li><h4><strong>Compant Name:</strong> ' . $company_name . '</h4></li>';
         $message .= '<li><h4><strong>Application for:</strong> ' . $title . '</h4></li>';
         $message .= '<li><h4><strong>Company Email:</strong> ' . $comp_email . '</h4></li>';
         $message .= '<li><h4><strong>Company Web:</strong> ' . $comp_web . '</h4></li></ul>';
@@ -124,28 +124,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
         $message .= '<li><strong>Resume Link:</strong> ' . $resumelink . '</li>';
         $message .= '</ul>';
         $message .= '<p>Please review the applicant\'s details and take necessary action.</p>';
-        $message .= '<p>Regards,<br><b>JobFinder</b></p>';
+        $message .= '<p>Regards,<br>JobFinder</p>';
         $message .= '<hr>'; // Optional: Add a horizontal line for visual separation
         $message .= '<p><strong>Company Overview:</strong></p>';
-        $message .= '<p><b>JobFinder</b> is a leading online platform dedicated to helping job seekers find employment opportunities with their favorite companies. Our platform provides a user-friendly interface and powerful search tools to streamline the job search process.</p>';
-        $message .= '<p>With <b>JobFinder</b>, users can easily browse through a wide range of job listings, filter by industry, location, and other criteria, and apply directly to positions that match their skills and experience. Whether you re a recent graduate looking for your first job or an experienced professional seeking new career opportunities, <b>JobFinder</b> has something for everyone.</p>';
+        $message .= '<p>JobFinder is a leading online platform dedicated to helping job seekers find employment opportunities with their favorite companies. Our platform provides a user-friendly interface and powerful search tools to streamline the job search process.</p>';
+        $message .= '<p>With JobFinder, users can easily browse through a wide range of job listings, filter by industry, location, and other criteria, and apply directly to positions that match their skills and experience. Whether you re a recent graduate looking for your first job or an experienced professional seeking new career opportunities, JobFinder has something for everyone.</p>';
         $message .= '<p>We partner with top companies across various industries to bring you the latest job openings and career opportunities.  Our goal is to connect talented individuals with reputable employers and facilitate successful job placements.</p>';
-        $message .= '<p>Join <b>JobFinder</b> today and take the next step towards your dream job!</p>';
+        $message .= '<p>Join JobFinder today and take the next step towards your dream job!</p>';
         $message .= '<p><strong>Contact Information:</strong></p>';
-        $message .= '<p><b>JobFinder</b>@gmail.com</p>'; 
+        $message .= '<p>JobFinder@gmail.com</p>'; 
     
         $result = smtp_mailer($to, $subject, $message, $resume);
 
         $usto = 'yashnikam070@gmail.com'; // Change this to your email address
-        $subject = 'A Applicant Applied for a Job to <b>' . $company_name . '</b> through <b>JobFinder</b>, Hr mail ' . $comp_email;
-        $message = '<p><strong>Dear <b>JobFinder</b> Team,</strong></p>';
-        $message .= '<p>A new job application has been submitted through <b>JobFinder</b>. Below are the details of the Company:</p><br>'; // Here's the missing semicolon
+        $subject = 'A Applicant Applied for a Job to ' . $company_name . ' through JobFinder, Hr mail ' . $comp_email;
+        $message = '<p><strong>Dear JobFinder Team,</strong></p>';
+        $message .= '<p>A new job application has been submitted through JobFinder. Below are the details of the Company:</p><br>'; // Here's the missing semicolon
         $message .= '<ul><li><h4><strong>Compant Name:</strong> ' . $company_name . '</h4></li>';
         $message .= '<li><h4><strong>Application for:</strong> ' . $title . '</h4></li>';
         $message .= '<li><h4><strong>Company Email:</strong> ' . $comp_email . '</h4></li>';
         $message .= '<li><h4><strong>Company Web:</strong> ' . $comp_web . '</h4></li></ul>';
         $message .= '<hr>'; // Optional: Add a horizontal line for visual separation
-        $message .= "<p>A new job application has been submitted through <b>JobFinder</b>. Below are the details of the applicant:</p>
+        $message .= "<p>A new job application has been submitted through JobFinder. Below are the details of the applicant:</p>
                     <ul>
                         <li><strong>First Name:</strong> $firstname</li>
                         <li><strong>Last Name:</strong> $lastname</li>
@@ -160,17 +160,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
                         <li><strong>Resume Link:</strong> $resumelink</li>
                     </ul>
                     <p>Please review the applicant's details and take necessary action.</p>
-                    <p>Regards,<br><b>JobFinder</b></p>";     
+                    <p>Regards,<br>JobFinder</p>";     
         $usresult = smtp_mailer($usto, $subject, $message, $resume);
 
         $applito = ''. $email;
-        $subject = 'Mail Send To <b>'. $company_name .'</b> application for <b>'. $title .'</b> through <b>JobFinder</b>.';
+        $subject = 'Mail Send To '. $company_name .' application for '. $title .' through JobFinder.';
         $message = "<p><strong>Dear $firstname $lastname,</strong></p>
-                    <p>Your application for the position at $company_name has been successfully submitted through <b>JobFinder</b>. Here are the details you provided:</p>
+                    <p>Your application for the position at $company_name has been successfully submitted through JobFinder. Here are the details you provided:</p>
                     <hr>
                     <p>We have received your application and will review it shortly. If your qualifications match our requirements, we will contact you for further steps in the recruitment process.</p>
-                    <p>Thank you for choosing <b>JobFinder</b> for your job search.</p>
-                    <p>Regards,<br><b>JobFinder</b> Team</p>";
+                    <p>Thank you for choosing JobFinder for your job search.</p>
+                    <p>Regards,<br>JobFinder Team</p>";
         
         $appliresult = smtp_mailer($applito, $subject, $message, $resume);
 
