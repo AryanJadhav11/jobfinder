@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
 
 <body>
 
-<div class="container p-5 pt-5 mt-10">
+<div class="container p-5  mt-8">
 <h2>Job Application Form</h2>
 <form id="appliform" method="post" enctype="multipart/form-data">
   <!-- fetch data from job_details.php  -->
@@ -229,21 +229,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
 <div class="form-row">
   <div class="form-group col-md-6">
       <!-- <label for="comp_name">Application For Company</label> -->
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="comp_name" name="comp_name" value="Application For Company : <?php echo $company; ?>"  readonly>
+      <label for="firstname">Application For Company :</label>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="comp_name" name="comp_name" value="<?php echo $company; ?>"  readonly>
     </div>
     <div class="form-group col-md-6" >
       <!-- <label for="title">Application For</label> -->
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="title" name="title" value="Application For : <?php echo $tit; ?>"  readonly>
+      <label for="firstname">Application For : </label>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="title" name="title" value="<?php echo $tit; ?>"  readonly>
     </div>
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
       <!-- <label for="comp_name">Application For Company</label> -->
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="salary" name="salary" value="Application For Company : <?php echo $salary; ?>"  readonly>
+      <label for="firstname">Salary : </label>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="salary" name="salary" value="<?php echo $salary; ?>"  readonly>
     </div>
     <div class="form-group col-md-6" >
       <!-- <label for="title">Application For</label> -->
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="location" name="location" value="Application For : <?php echo $loc; ?>"  readonly>
+      <label for="firstname">Location : </label>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="location" name="location" value="<?php echo $loc; ?>"  readonly>
     </div>
 </div>
 
