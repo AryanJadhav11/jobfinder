@@ -171,7 +171,7 @@ $resimg=mysqli_fetch_assoc($que2);
     $loc = $row9['loc'];
     
     // Echo the HTML form directly within the if block
-    echo '<form action="appli.php" method="POST">';
+    echo '<form action="application.php" method="POST">';
     echo '<input type="hidden" id="company" name="company" value="' . $row9['company'] . '">';
     echo '<input type="hidden" id="emaill" name="emaill" value="' . $row9['email'] . '">';
     echo '<input type="hidden" id="web" name="web" value="' . $row9['web'] . '">';
