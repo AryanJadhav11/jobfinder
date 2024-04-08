@@ -43,7 +43,7 @@ function getInitials($name) {
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="index.php">Home</a></li>
                                             <li><a href="job_listing.php">Find Jobs</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="#">Page</a>
