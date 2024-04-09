@@ -1228,23 +1228,13 @@ $(document).ready(function () {
             <ul class="list-unstyled components">
                 <p>Admin Panel</p>
                 <li class="active">
-                    <a href="admin_turf.php" style="text-decoration:none;">Manage Jobs</a>
-                    
-                </li>
-                 
-                <li class="active">
-                    <a href="bookedturf.php" style="text-decoration:none;">HR requests</a>
+                    <a href="requests.php" style="text-decoration:none;">HR requests</a>
                 </li>
                 <li class="active">
                     <a href="admin.php" style="text-decoration:none;">Overview</a>
                 </li>
                 
-                <li class="active">
-                    <a href="add_product.php" style="text-decoration:none;">Manage HRs</a>
-                    
-                </li>
-               
-                
+              
 
             
         </nav>
