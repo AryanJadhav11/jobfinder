@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
     
         $result = smtp_mailer($to, $subject, $message, $resume);
 
-        $usto = 'yashnikam070@gmail.com'; // Change this to your email address
+        $usto = 'bmjadhav1757@gmail.com'; // Change this to your email address
         $subject = 'A Applicant Applied for a Job to ' . $company_name . ' through JobFinder, Hr mail ' . $comp_email;
         $message = '<p><strong>Dear JobFinder Team,</strong></p>';
         $message .= '<p>A new job application has been submitted through JobFinder. Below are the details of the Company:</p><br>'; // Here's the missing semicolon
