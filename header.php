@@ -10,6 +10,23 @@ function getInitials($name) {
     return $initials;
 }
 ?>
+
+<link rel="manifest" href="site.webmanifest">
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/fc/favicon.ico">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+            <link rel="stylesheet" href="assets/css/flaticon.css">
+            <link rel="stylesheet" href="assets/css/price_rangs.css">
+            <link rel="stylesheet" href="assets/css/slicknav.css">
+            <link rel="stylesheet" href="assets/css/animate.min.css">
+            <link rel="stylesheet" href="assets/css/magnific-popup.css">
+            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="assets/css/themify-icons.css">
+            <link rel="stylesheet" href="assets/css/slick.css">
+            <link rel="stylesheet" href="assets/css/nice-select.css">
+            <link rel="stylesheet" href="assets/css/style.css">
 <style>
                 .avatar {
         width: 30px;
@@ -49,7 +66,7 @@ function getInitials($name) {
                                             <li><a href="#">Page</a>
                                                 <ul class="submenu">
                                                     <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
+                                                    <li><a href="job_listing.php">job Details</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>

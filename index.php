@@ -29,7 +29,7 @@ $resimg=mysqli_fetch_assoc($que2);
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/fc/favicon.ico">
 
 		<!-- CSS here -->
             <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -63,26 +63,6 @@ $resimg=mysqli_fetch_assoc($que2);
     </div>
     <!-- Preloader Start -->
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
     <main>
 
         <!-- slider Area Start-->
@@ -236,7 +216,7 @@ echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
         <div class="row justify-content-center">
             <div class="col-xl-10">
                 <!-- single-job-content -->
-                <div class="single-job-items mb-30">
+                <div class="single-job-items mb-30" style="margin-left:100px;">
                     <?php 
                     // Check if $que2 has any rows
                     if(mysqli_num_rows($que2) > 0) {
@@ -259,14 +239,14 @@ echo '<span class="h2 font-weight-bold mb-0">' . $job_row . '</span>';
                             <ul>
                                 <li>Job: <?= ucfirst($row2['title']) ?></li>
                                 <li><i class="fas fa-map-marker-alt"></i><?= ucfirst($row2['loc']) ?></li>
-                                <li>Salary: $<?= ucfirst($row2['salary']) ?><br></li>
+                                <li>Salary: ₹<?= ucfirst($row2['salary']) ?><br></li>
                             </ul>
                         </div>
-                        <div class="items-link f-right ">
+
+                    </div>
+                    <div class="items-link f-right ">
                             <a  href="job_details.php?id=<?= $row2['id'] ?>">View</a>
                         </div>
-                    </div>
-                    
                     <?php 
                         }
                     } else {

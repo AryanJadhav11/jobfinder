@@ -90,17 +90,19 @@ $resimg=mysqli_fetch_assoc($que2);
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                <?php 
-                            // Check if $row2 has the 'img' key
-                            if (isset($row9['img'])) {
+                            <?php 
+                            // Check if $row9 has the 'img' key
+                            if (isset($row9['img']) && file_exists("upload/{$row9['img']}")) {
                                 $imgSrc = "upload/{$row9['img']}";
+                            } else {
+                                $imgSrc = "no-image.png";
+                            }
                             ?>
-                            <img src="<?= $imgSrc ?>" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Product Image">
-                            <?php } else { ?>
-                            <img src="placeholder.jpg" class="img-fluid" style="height: 200px; object-fit: contain;" alt="Company Logo">
-                            <?php } ?>
+                            <img src="<?= $imgSrc ?>" class="img-fluid" style="height: 200px; width: 400px; object-fit: contain;" alt="<?= isset($row9['img']) ? 'Company Logo' : 'Company Logo' ?>">
+
+                            
                                 </div>
-                                <div class="job-tittle">
+                                <div class="job-tittle m-2 mx-4">
                                     <a href="#">
                                         <h4><?= ucfirst($row9['company']) ?></h4>
                                     </a>
@@ -115,13 +117,15 @@ $resimg=mysqli_fetch_assoc($que2);
                           <!-- job single End -->
                        
                         <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
+                            <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p><?= ucfirst($row9['description']) ?></p>
-                            </div>
+                               <ul>
+                               <?= ucfirst($row9['description']) ?>
+                               </ul>
+                            </div><hr>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
@@ -130,7 +134,7 @@ $resimg=mysqli_fetch_assoc($que2);
                                <ul>
                                    <?= ucfirst($row9['requirement']) ?>
                                </ul>
-                            </div>
+                            </div><hr>
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
@@ -139,7 +143,7 @@ $resimg=mysqli_fetch_assoc($que2);
                                <ul>
                                <?= ucfirst($row9['education']) ?>
                                </ul>
-                            </div>
+                            </div><hr>
                         </div>
 
                     </div>
@@ -153,7 +157,7 @@ $resimg=mysqli_fetch_assoc($que2);
                           <ul>
                               <li>Posted date : <span><?= ucfirst($row9['postdate']) ?></span></li>
                               <li>loc : <span><?= ucfirst($row9['loc']) ?></span></li>
-                              <li>Vacancy : <span></span></li>
+                              <!-- <li>Vacancy : <span></span></li> -->
                               <li>Job nature : <span>Full time</span></li>
                               <li>Salary :  <span><?= ucfirst($row9['salary']) ?></span></li>
                              

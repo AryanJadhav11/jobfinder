@@ -198,7 +198,7 @@ while($row = $result->fetch_assoc()) {
                 <img src="placeholder.jpg" class="img-fluid" style="height:85x; object-fit: contain;" alt="Company Logo">
             <?php endif; ?>
         </div>
-        <div class="job-tittle job-tittle2">
+        <div class="job-tittle job-tittle2 mx-5">
             <a href="#">
                 <h4><?= ucfirst($row['company']) ?></h4>
             </a>

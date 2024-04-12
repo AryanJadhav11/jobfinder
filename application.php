@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
     $resume = isset($_FILES['resume']['name']) ? $_FILES['resume']['name'] : '';
 
     // Check if all required fields are filled out
-    $required_fields = array('firstname', 'lastname', 'email', 'phone_no', 'address', 'city', 'zip', 'qualification', 'techskill', 'gender');
+    $required_fields = array('company_name','title','location','firstname', 'lastname', 'email', 'phone_no', 'address', 'city', 'zip', 'qualification', 'techskill', 'gender');
     $missing_fields = array();
     foreach ($required_fields as $field) {
         if (empty($_POST[$field])) {
@@ -230,24 +230,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sendmail'])) {
   <div class="form-group col-md-6">
       <!-- <label for="comp_name">Application For Company</label> -->
       <label for="firstname">Application For Company :</label>
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="comp_name" name="comp_name" value="<?php echo $company; ?>"  readonly>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="comp_name" name="comp_name" value="<?php echo $company; ?>"  readonly require>
     </div>
     <div class="form-group col-md-6" >
       <!-- <label for="title">Application For</label> -->
       <label for="firstname">Application For : </label>
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="title" name="title" value="<?php echo $tit; ?>"  readonly>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="title" name="title" value="<?php echo $tit; ?>"  readonly require>
     </div>
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
       <!-- <label for="comp_name">Application For Company</label> -->
       <label for="firstname">Salary : </label>
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="salary" name="salary" value="<?php echo $salary; ?>"  readonly>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="salary" name="salary" value="<?php echo $salary; ?>"  readonly require>
     </div>
     <div class="form-group col-md-6" >
       <!-- <label for="title">Application For</label> -->
       <label for="firstname">Location : </label>
-      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="location" name="location" value="<?php echo $loc; ?>"  readonly>
+      <input style="background-color: #f59bb8; color: Black;" type="text" class="form-control" id="location" name="location" value="<?php echo $loc; ?>"  readonly require>
     </div>
 </div>
 
